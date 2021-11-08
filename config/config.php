@@ -54,7 +54,7 @@ return [
     /**
      * Amount of time in seconds to wait till we try and poll a task status again
      */
-    'polling_sleep_seconds' => env('DRUID_POLLING_SLEEP_SECONDS', 1),
+    'polling_sleep_seconds' => env('DRUID_POLLING_SLEEP_SECONDS', 2),
 
     /**
      * Supply the druid version which you are sending your queries to.

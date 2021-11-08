@@ -89,7 +89,7 @@ class DruidClient
         /**
          * Amount of time in seconds to wait till we try and poll a task status again
          */
-        'polling_sleep_seconds' => 1,
+        'polling_sleep_seconds' => 2,
 
         /**
          * Supply the druid version which you are sending your queries to.
