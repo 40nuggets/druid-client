@@ -55,10 +55,10 @@ class KillTask implements TaskInterface
     public function toArray(): array
     {
         $result = [
-            'type'       => 'kill',
-            'dataSource' => $this->dataSource,
+            'type'         => 'kill',
+            'dataSource'   => $this->dataSource,
             'markAsUnused' => $this->markAsUnused,
-            'interval'   => $this->interval->getInterval(),
+            'interval'     => $this->interval->getInterval(),
         ];
 
         if ($this->taskId) {
