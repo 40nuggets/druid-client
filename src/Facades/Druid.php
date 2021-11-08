@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Level23\Druid\Tasks\CompactTaskBuilder compact(string $dataSource)
  * @method static \Level23\Druid\Tasks\KillTaskBuilder kill(string $dataSource)
  * @method static \Level23\Druid\Tasks\IndexTaskBuilder reindex(string $dataSource)
+ * @method static \Level23\Druid\Tasks\OverwriteTaskBuilder overwrite(string $dataSource)
  *
  * @package Level23\Druid\Facades
  * @codeCoverageIgnore
