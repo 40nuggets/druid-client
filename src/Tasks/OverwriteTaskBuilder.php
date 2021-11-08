@@ -57,7 +57,7 @@ class OverwriteTaskBuilder extends TaskBuilder
     protected $timeColumn = '__time';
 
     /**
-     * @var string
+     * @var array
      */
     protected $data;
 
@@ -76,7 +76,7 @@ class OverwriteTaskBuilder extends TaskBuilder
         $this->inputSourceType = $inputSourceType;
     }
 
-    public function setData(string $data): OverwriteTaskBuilder
+    public function setData(array $data): OverwriteTaskBuilder
     {
         $this->data = $data;
 

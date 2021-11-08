@@ -8,16 +8,16 @@ use Level23\Druid\Interval\IntervalInterface;
 class InlineInputSource implements InputSourceInterface
 {
     /**
-     * @var string
+     * @var array
      */
     protected $data;
 
     /**
      * InlineInputSource constructor.
      *
-     * @param string $data
+     * @param array $data
      */
-    public function __construct(string $data)
+    public function __construct(array $data)
     {
         $this->data = $data;
     }
