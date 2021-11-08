@@ -24,6 +24,11 @@ class KillTask implements TaskInterface
     protected $interval;
 
     /**
+     * @var bool
+     */
+    protected $markAsUnused;
+
+    /**
      * @var \Level23\Druid\Context\TaskContext|null
      */
     protected $context;
@@ -31,13 +36,15 @@ class KillTask implements TaskInterface
     public function __construct(
         string $dataSource,
         Interval $interval,
+        bool $markAsUnused = false,
         string $taskId = null,
         TaskContext $context = null
     ) {
-        $this->dataSource = $dataSource;
-        $this->taskId     = $taskId;
-        $this->interval   = $interval;
-        $this->context    = $context;
+        $this->dataSource   = $dataSource;
+        $this->taskId       = $taskId;
+        $this->markAsUnused = $markAsUnused;
+        $this->interval     = $interval;
+        $this->context      = $context;
     }
 
     /**
@@ -50,6 +57,7 @@ class KillTask implements TaskInterface
         $result = [
             'type'       => 'kill',
             'dataSource' => $this->dataSource,
+            'markAsUnused' => $this->markAsUnused,
             'interval'   => $this->interval->getInterval(),
         ];
 

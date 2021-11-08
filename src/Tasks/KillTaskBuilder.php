@@ -26,6 +26,11 @@ class KillTaskBuilder extends TaskBuilder
     protected $dataSource;
 
     /**
+     * @var bool
+     */
+    protected $markAsUnused = false;
+
+    /**
      * IndexTaskBuilder constructor.
      *
      * @param \Level23\Druid\DruidClient $client
@@ -35,6 +40,18 @@ class KillTaskBuilder extends TaskBuilder
     {
         $this->client     = $client;
         $this->dataSource = $dataSource;
+    }
+
+    /**
+     * Forcibly marks segments in interval as unused
+     *
+     * @return $this
+     */
+    public function markAsUnused(): KillTaskBuilder
+    {
+        $this->markAsUnused = true;
+
+        return $this;
     }
 
     /**
@@ -50,6 +67,6 @@ class KillTaskBuilder extends TaskBuilder
             $context = new TaskContext($context);
         }
 
-        return new KillTask($this->dataSource, $this->interval, $this->taskId, $context);
+        return new KillTask($this->dataSource, $this->interval, $this->markAsUnused, $this->taskId, $context);
     }
 }
