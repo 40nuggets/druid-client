@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static mixed config(string $key, $default = null)
  * @method static \Level23\Druid\Metadata\MetadataBuilder metadata()
  * @method static \Level23\Druid\Responses\TaskResponse taskStatus(string $taskId)
+ * @method static \Level23\Druid\Responses\TaskResponse pollTaskStatus(string $taskId)
  * @method static \Level23\Druid\Tasks\CompactTaskBuilder compact(string $dataSource)
  * @method static \Level23\Druid\Tasks\KillTaskBuilder kill(string $dataSource)
  * @method static \Level23\Druid\Tasks\IndexTaskBuilder reindex(string $dataSource)

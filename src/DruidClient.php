@@ -87,6 +87,11 @@ class DruidClient
         'retry_delay_ms'  => 500,
 
         /**
+         * Amount of time in seconds to wait till we try and poll a task status again
+         */
+        'polling_sleep_seconds' => 1,
+
+        /**
          * Supply the druid version which you are sending your queries to.
          * Based on this druid version, we can enable / disable certain new features if your
          * server supports this.
@@ -399,6 +404,26 @@ class DruidClient
         $response = $this->executeRawRequest('get', $url);
 
         return new TaskResponse($response);
+    }
+
+    /**
+     * Waits till a druid task completes and returns the status of it.
+     *
+     * @param string $taskId
+     *
+     * @return \Level23\Druid\Responses\TaskResponse
+     * @throws \Exception|\GuzzleHttp\Exception\GuzzleException
+     */
+    public function pollTaskStatus(string $taskId)
+    {
+        while (true) {
+            $status = $this->taskStatus($taskId);
+
+            if ($status->getStatus() != 'RUNNING') {
+                break;
+            }
+            sleep($this->config('polling_sleep_seconds'));
+        }
     }
 
     /**
