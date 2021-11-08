@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Level23\Druid;
 
+use Level23\Druid\InputSources\InlineInputSource;
+use Level23\Druid\Tasks\OverwriteTaskBuilder;
 use Psr\Log\LoggerInterface;
 use InvalidArgumentException;
 use Level23\Druid\Types\Granularity;
@@ -481,5 +483,10 @@ class DruidClient
         }
 
         return $builder;
+    }
+
+    public function overwrite(string $dataSource): OverwriteTaskBuilder
+    {
+        return new OverwriteTaskBuilder($this, $dataSource, InlineInputSource::class);
     }
 }
