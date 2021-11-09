@@ -99,7 +99,7 @@ class OverwriteTask implements TaskInterface
                 'dataSchema' => [
                     'dataSource'      => $this->dateSource,
                     'timestampSpec'   => [
-                        'column' => '__time',
+                        'column' => $this->timeColumn,
                         'format' => 'auto',
                     ],
                     'dimensionsSpec'  => [
