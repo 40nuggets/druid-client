@@ -416,7 +416,7 @@ class DruidClient
      * @return \Level23\Druid\Responses\TaskResponse
      * @throws \Exception|\GuzzleHttp\Exception\GuzzleException
      */
-    public function pollTaskStatus(string $taskId)
+    public function pollTaskStatus(string $taskId): TaskResponse
     {
         while (true) {
             $status = $this->taskStatus($taskId);
@@ -426,6 +426,7 @@ class DruidClient
             }
             sleep(intval($this->config('polling_sleep_seconds')));
         }
+        return $status;
     }
 
     /**
