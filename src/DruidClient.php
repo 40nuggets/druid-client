@@ -424,7 +424,7 @@ class DruidClient
             if ($status->getStatus() != 'RUNNING') {
                 break;
             }
-            sleep($this->config('polling_sleep_seconds'));
+            sleep(intval($this->config('polling_sleep_seconds')));
         }
     }
 
