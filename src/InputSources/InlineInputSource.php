@@ -26,7 +26,7 @@ class InlineInputSource implements InputSourceInterface
     {
         return [
             'type'       => 'inline',
-            'data'       => $this->data,
+            'data'       => json_encode($this->data),
         ];
     }
 }
