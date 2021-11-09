@@ -24,9 +24,12 @@ class InlineInputSource implements InputSourceInterface
 
     public function toArray(): array
     {
+        $encodedData = array_map(function ($elem) {
+            return json_encode($elem);
+        }, $this->data);
         return [
             'type'       => 'inline',
-            'data'       => json_encode($this->data),
+            'data'       => implode('\n', $encodedData),
         ];
     }
 }
