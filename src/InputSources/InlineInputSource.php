@@ -29,7 +29,7 @@ class InlineInputSource implements InputSourceInterface
         }, $this->data);
         return [
             'type'       => 'inline',
-            'data'       => implode('\n', $encodedData),
+            'data'       => implode("\n", $encodedData),
         ];
     }
 }
