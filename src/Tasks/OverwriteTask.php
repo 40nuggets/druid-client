@@ -114,6 +114,9 @@ class OverwriteTask implements TaskInterface
                     ],
                     'appendToExisting' => false,
                 ],
+                'granularitySpec' => [
+                    "rollup" =>  false,
+                ],
             ],
         ];
 

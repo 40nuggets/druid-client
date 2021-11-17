@@ -7,6 +7,7 @@ use Closure;
 use InvalidArgumentException;
 use Level23\Druid\DruidClient;
 use Level23\Druid\InputSources\InlineInputSource;
+use Level23\Druid\InputSources\S3InputSource;
 use Level23\Druid\Types\DataType;
 use Level23\Druid\Context\TaskContext;
 use Level23\Druid\Concerns\HasInterval;
@@ -62,6 +63,11 @@ class OverwriteTaskBuilder extends TaskBuilder
     protected $data;
 
     /**
+     * @var array
+     */
+    protected $uris;
+
+    /**
      * IndexTaskBuilder constructor.
      *
      * @param \Level23\Druid\DruidClient $client
@@ -79,6 +85,13 @@ class OverwriteTaskBuilder extends TaskBuilder
     public function setData(array $data): OverwriteTaskBuilder
     {
         $this->data = $data;
+
+        return $this;
+    }
+
+    public function setUris(array $uris): OverwriteTaskBuilder
+    {
+        $this->uris = $uris;
 
         return $this;
     }
@@ -123,6 +136,14 @@ class OverwriteTaskBuilder extends TaskBuilder
                     );
                 }
                 $inputSource = new InlineInputSource($this->data);
+                break;
+            case S3InputSource::class:
+                if (!$this->uris) {
+                    throw new InvalidArgumentException(
+                        'S3InputSource chosen without providing uris'
+                    );
+                }
+                $inputSource = new S3InputSource($this->uris);
                 break;
             default:
                 throw new InvalidArgumentException(
