@@ -24,7 +24,7 @@ class S3InputSource implements InputSourceInterface
     {
         return [
             'type' => 's3',
-            'uris' => json_encode(array_values($this->uris)),
+            'uris' => $this->uris,
             'properties' => [
                 "accessKeyId" => [
                     "type" => "environment",
